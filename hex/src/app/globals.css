@@ -1,0 +1,161 @@
+
+
+@import "tailwindcss";
+
+
+
+
+
+@theme{
+  --color-primary: #B2C0FF;
+  --color-secondary: #edf5f5;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+.us-transition-wrapper {
+  transition: max-height 0.24s ease, opacity 0.24s ease;
+  overflow: hidden;
+}
+
+.us-transition-wrapper.open {
+  max-height: 200px; /* Примерно максимальная высота Us (подбери вручную) */
+  opacity: 1;
+}
+
+.us-transition-wrapper.closed {
+  max-height: 0;
+  opacity: 0;
+}
+/*  */
+header {
+  transition: opacity 0.3s ease;
+}
+.your-content {
+  @apply w-[150px] py-6 px-8 text-black bg-white border-black;
+}
+.your-content[data-state="open"] {
+  animation: slide-in-top 0.3s ease-out forwards;
+}
+.your-content[data-state="closed"] {
+  animation: slide-out-top 0.3s ease-in forwards;
+}
+
+/* Анимации */
+@keyframes slide-in-top {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#nprogress .bar {
+  background: #3A59C5 !important; /* твой цвет */
+  height: 5px !important;
+
+
+}
+
+
+
+#nprogress .peg {
+  box-shadow: 0 2 6px #3A59C5, 0 0 7px #3A59C5 !important;
+
+}
+@keyframes slide-out-top {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .data-\[state\=open\]\:animate-slide-in-left[data-state="open"] {
+    animation: slide-in-left 0.3s ease-out forwards;
+  }
+
+  .data-\[state\=closed\]\:animate-slide-out-left[data-state="closed"] {
+    animation: slide-out-left 0.3s ease-in forwards;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out-left {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+}
+
+
+/* ───────────────────────────────────────────────────────── */
+
+/* 4) Ваши глобальные CSS-правки */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  color: #edf5f5;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button{
+  border: none;
+}
+
+/* Screen Reader Only - Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible для keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #3A59C5;
+  outline-offset: 2px;
+}
